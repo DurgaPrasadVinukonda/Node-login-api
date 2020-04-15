@@ -1,5 +1,6 @@
 const express= require('express')
 const bodyParser= require('body-parser')
+const cors= require('cors')
 const PORT = 4000
 //Use routes in our file
 const api = require('./routes/api')
@@ -7,6 +8,7 @@ const api = require('./routes/api')
 //Creating a Instance of express
 
 const app = express()
+app.use(cors())
 
 
 //Specify to use body parser a json data
