@@ -1,6 +1,6 @@
 const express= require('express')
 const bodyParser= require('body-parser')
-const PORT = 3000
+const PORT = 4000
 //Use routes in our file
 const api = require('./routes/api')
 
