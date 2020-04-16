@@ -43,13 +43,13 @@ router.post('/login',(req,res) =>{
             console.log(error)
         } else {
              if (!user){
-                 res.status(401).send('Invalid Email')
+                 res.status(401).send({message:'Invalid Email'})
              }else 
              if (user.password  !== userData.password){
-                 res.status(401).send('Invalid Password')
+                 res.status(401).send({message:'Invalid Password'})
 
              }  else {
-                 res.status(200).send('user')
+                 res.status(200).send(user).json
              }
         }
     })
