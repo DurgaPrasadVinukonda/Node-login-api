@@ -8,9 +8,11 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { EventsComponent } from './events/events.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
-import{HttpClientModule} from '@angular/common/http';
+import{HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { EventService } from './event.service';
+import {AuthGuard} from '../app/auth.guard';
+import {TokenInterceptorService} from '../app/token-interceptor.service'
 
 @NgModule({
   declarations: [
@@ -26,7 +28,11 @@ import { EventService } from './event.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService,EventService],
+  providers: [AuthService,AuthGuard,EventService,{
+    provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptorService,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
